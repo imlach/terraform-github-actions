@@ -39,9 +39,9 @@ credentials "${TF_ACTION_TFE_HOSTNAME:-app.terraform.io}" {
 EOF
 fi
 
-if [[ ! -z "$TF_ACTION_WORKSPACE" ]] && [[ "$TF_ACTION_WORKSPACE" != "default" ]]; then
-  terraform workspace select "$TF_ACTION_WORKSPACE"
-fi
+# if [[ ! -z "$TF_ACTION_WORKSPACE" ]] && [[ "$TF_ACTION_WORKSPACE" != "default" ]]; then
+#   terraform workspace select "$TF_ACTION_WORKSPACE"
+# fi
 
 set +e
 OUTPUT=$(sh -c "TF_IN_AUTOMATION=true terragrunt plan -detailed-exitcode -input=false $*" 2>&1)
