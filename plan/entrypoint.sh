@@ -44,7 +44,7 @@ fi
 # fi
 
 set +e
-OUTPUT=$(sh -c "TF_IN_AUTOMATION=true terragrunt plan -detailed-exitcode -input=false $*" 2>&1)
+OUTPUT=$(sh -c "TF_IN_AUTOMATION=true terragrunt plan-all -detailed-exitcode -input=false $*" 2>&1)
 SUCCESS=$?
 echo "$OUTPUT"
 set -e
