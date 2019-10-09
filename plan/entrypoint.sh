@@ -44,7 +44,7 @@ if [[ ! -z "$TF_ACTION_WORKSPACE" ]] && [[ "$TF_ACTION_WORKSPACE" != "default" ]
 fi
 
 set +e
-OUTPUT=$(sh -c "TF_IN_AUTOMATION=true terraform plan -detailed-exitcode -input=false $*" 2>&1)
+OUTPUT=$(sh -c "TF_IN_AUTOMATION=true terragrunt plan -detailed-exitcode -input=false $*" 2>&1)
 SUCCESS=$?
 echo "$OUTPUT"
 set -e
@@ -69,7 +69,7 @@ OUTPUT=$(stripcolors "$OUTPUT")
 COMMENT=""
 if [ $SUCCESS -ne 0 ]; then
     OUTPUT=$(wrap "$OUTPUT")
-    COMMENT="#### \`terraform plan\` Failed
+    COMMENT="#### \`terragrunt plan\` Failed
 $OUTPUT
 
 *Workflow: \`$GITHUB_WORKFLOW\`, Action: \`$GITHUB_ACTION\`*"
@@ -88,7 +88,7 @@ else
     # Call wrap to optionally wrap our output in a collapsible markdown section.
     OUTPUT=$(wrap "$OUTPUT")
 
-    COMMENT="#### \`terraform plan\` Success
+    COMMENT="#### \`terragrunt plan\` Success
 $OUTPUT
 
 *Workflow: \`$GITHUB_WORKFLOW\`, Action: \`$GITHUB_ACTION\`*"
